@@ -1,9 +1,36 @@
-## Guide
+# Guide
 
 - React
 - Redux
 - Typescript
 
+*Recommend use `yarn` package manager*
+
+## Clone from git
+
+- Clone project from git
+```bash
+
+git clone https://github.com/thuanntq/react-redux-ts.git
+
+#or 
+
+git clone git@github.com:thuanntq/react-redux-ts.git
+
+```
+
+- run yarn install
+
+```bash
+
+yarn
+
+# or
+
+npm install
+
+```
+## Started 
 
 ### Create project
 
@@ -11,11 +38,11 @@
 
 # create project react with template typescript
 
-npx create-react-app my-app --template typescript
+yarn create react-app my-app --template typescript
 
 # or
 
-yarn create react-app my-app --template typescript
+npx create-react-app my-app --template typescript
 
 ```
 
@@ -25,9 +52,10 @@ yarn create react-app my-app --template typescript
 
 # install typescript, redux, react-reduxt, typescript for react redux with exact version
 
-npm install --save typescript redux react-redux @types/react-reduxt -E
+yarn add typescript redux react-redux @types/react-reduxt -E
 
 # or
 
-yarn add typescript redux react-redux @types/react-reduxt -E
+npm install --save typescript redux react-redux @types/react-reduxt -E
+
 ```
