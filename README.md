@@ -1,16 +1,25 @@
 ## Guide
 
-*Create project*
+- React
+- Redux
+- Typescript
+
+
+### Create project
 
 ```bash
+
+# create project react with template typescript
+
 npx create-react-app my-app --template typescript
+
 # or
+
 yarn create react-app my-app --template typescript
 
-
-
 ```
-*Install package*
+
+### Install package
 
 ```bash
 
