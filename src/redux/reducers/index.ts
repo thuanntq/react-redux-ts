@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import counterReducer from "./counterReducer";
-import { STORE } from "./../actions/types";
+import { MYSTORE } from "./../actions/types";
 
-export default combineReducers<STORE>({
+export default combineReducers<MYSTORE>({
   counter: counterReducer
 });

@@ -2,6 +2,7 @@ export enum COUNTER {
   INCREMENT = "INCREMENT",
   DECREMENT = "DECREMENT"
 }
-export type STORE = {
+
+export type MYSTORE = {
   counter: number;
 };
