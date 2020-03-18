@@ -1,16 +1,18 @@
-import { Payload } from "./../actions";
-import { COUNTER } from "./../actions/types";
+import { CounterPayload } from "./../actions";
+import { COUNTER_ACTION } from "./../actions/types";
 
-type CounterState = number;
+type State = number;
 
-const counterReducer = (state: CounterState = 0, action: Payload): CounterState => {
+const initState: State = 0;
+
+const myReducer = (state = initState, action: CounterPayload): State => {
   switch (action.type) {
-    case COUNTER.INCREMENT:
+    case COUNTER_ACTION.INCREMENT:
       if (state < 10) {
         return state + 1;
       }
       return state;
-    case COUNTER.DECREMENT:
+    case COUNTER_ACTION.DECREMENT:
       if (state > 0) {
         return state - 1;
       }
@@ -20,4 +22,4 @@ const counterReducer = (state: CounterState = 0, action: Payload): CounterState 
   }
 };
 
-export default counterReducer;
+export default myReducer;
