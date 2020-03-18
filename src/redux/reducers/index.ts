@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
 import counterReducer from "./counterReducer";
 import todoReducer from "./todoReducer";
-import { MYSTORE } from "./../actions/types";
 
-export default combineReducers<MYSTORE>({
+const rootReducer =  combineReducers({
   counter: counterReducer,
   todos: todoReducer,
 });
+
+export default rootReducer
+
+export type RootState = ReturnType<typeof rootReducer>
