@@ -1,14 +1,8 @@
 import { TodoPayload } from './../actions';
 import { TODO_ACTION } from './../actions/types';
-
-interface TODO {
-    userId: number;
-    id: number;
-    title: string;
-    completed: boolean;
-}
+import {TodoInterface} from './../../components/constants/types';
 type MyState = {
-    todos: TODO[];
+    todos: TodoInterface[];
 };
 
 const initState: MyState = {
