@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import TodoDetailComponent from './components/todo/Detail';
 import TodoListComponent from './components/todo/List';
 
@@ -8,10 +8,10 @@ const App: React.FC = React.memo(() => {
         <BrowserRouter>
             <Link to="/todos">List todo</Link>
 
-            {/* <Switch> */}
+            <Switch>
                 <Route path="/todos" exact component={TodoListComponent} />
                 <Route path="/todos/:id" component={TodoDetailComponent} />
-            {/* </Switch> */}
+            </Switch>
         </BrowserRouter>
     );
 });
