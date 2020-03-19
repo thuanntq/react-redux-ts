@@ -16,6 +16,8 @@ const App: React.FC = React.memo(() => {
     const todos = useTypeSelector(state => state.todos);
     const dispatch = useDispatch();
 
+    const headRef = React.createRef<HTMLHeadingElement>();
+
     const [params, setParams] = React.useState<ParamState>({
         _start: 0,
         _limit: TODO_LIMIT,
@@ -30,7 +32,7 @@ const App: React.FC = React.memo(() => {
     };
 
     const prevPage = () => {
-        if(params._start < TODO_LIMIT){
+        if (params._start < TODO_LIMIT) {
             return;
         }
         setParams(prev => ({
@@ -49,17 +51,42 @@ const App: React.FC = React.memo(() => {
             });
     }, [params]);
 
+    /** apply effect when counter change */
+
+    const setHeadingColor = (color: string) => {
+        headRef.current && headRef.current.style.setProperty('color', color);
+    };
+
+    const applyEffect = () => {
+        setHeadingColor('red');
+        setTimeout(() => {
+            setHeadingColor('black');
+        }, 2e2);
+    };
+
+    useEffect(() => {
+        applyEffect();
+        
+        return () => {
+            applyEffect();
+        };
+    }, [counter]);
+
     return (
         <div>
-            <h1>Counter: {counter}</h1>
+            <h1 ref={headRef}>Counter: {counter}</h1>
 
             <button onClick={() => dispatch(increment())}> (+) Increment</button>
             <button onClick={() => dispatch(decremet())}> (-) Decrement</button>
 
             <div>
                 <h2>Todo</h2>
-                <button disabled={isLoading || params._start < TODO_LIMIT} onClick={() => prevPage()}>Prev page</button>
-                <button disabled={isLoading} onClick={() => nextPage()}>Next page</button>
+                <button disabled={isLoading || params._start < TODO_LIMIT} onClick={() => prevPage()}>
+                    Prev page
+                </button>
+                <button disabled={isLoading} onClick={() => nextPage()}>
+                    Next page
+                </button>
 
                 {isLoading && <p>Loading...</p>}
 
