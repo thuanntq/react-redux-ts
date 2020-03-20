@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { TodoInterface } from '../constants/types';
-import { Button } from './../common/button/Button';
-import { Input } from './../common/input/Input';
+import { Button } from './../common/Button';
+import { Input } from './../common/Input';
 
 type Props = {
     todo: TodoInterface;
