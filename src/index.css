@@ -30,3 +30,8 @@ code {
 h1 {
     transition: all 0.3s;
 }
+
+button:disabled{
+    opacity: .5;
+    border-color: #fff;
+}

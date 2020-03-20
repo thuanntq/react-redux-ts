@@ -4,7 +4,7 @@ type CssProps = {
     transform: string;
 };
 
-export default function useScrollHeader() {
+export const useScrollHeader = () => {
     const [style, setStyle] = useState<CssProps>({ transform: 'none' });
 
     const getClientRect = (): DOMRect => document.body.getBoundingClientRect();
@@ -13,7 +13,7 @@ export default function useScrollHeader() {
         let scrollPos = 0;
 
         window.addEventListener('scroll', () => {
-            const transformValue:string = getClientRect().top > scrollPos ? 'none' : 'translateY(-100%)';
+            const transformValue: string = getClientRect().top > scrollPos ? 'none' : 'translateY(-100%)';
 
             setStyle({ transform: transformValue });
 
@@ -22,4 +22,5 @@ export default function useScrollHeader() {
     }, []);
 
     return style;
-}
+};
+

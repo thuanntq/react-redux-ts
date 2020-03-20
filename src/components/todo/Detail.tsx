@@ -6,8 +6,11 @@ interface MatchParams {
     id: string;
 }
 
-const TodoDetailComponent: React.FC<RouteComponentProps<MatchParams>> = React.memo(({ match, history }) => {
+type Props = RouteComponentProps<MatchParams>;
+
+export const TodoDetailComponent: React.FC<Props> = React.memo(({ match, history }) => {
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
+
     const [todo, setTodo] = React.useState<TodoInterface>();
 
     const todoId = match.params.id;
@@ -20,17 +23,15 @@ const TodoDetailComponent: React.FC<RouteComponentProps<MatchParams>> = React.me
                 setTodo(json);
                 setIsLoading(false);
             });
-    }, []);
+    }, [todoId]);
 
     return (
         <div>
             {isLoading && <h1>Loading...</h1>}
-            
+
             {!isLoading && <h1>{todo?.title ?? ''}</h1>}
 
             <button onClick={() => history.goBack()}>Back</button>
         </div>
     );
 });
-
-export default TodoDetailComponent;

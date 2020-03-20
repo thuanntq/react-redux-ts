@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { TodoInterface } from '../constants/types';
 import { useTypeSelector } from './../../hooks/useTypeSelector';
-import { decremet, fetchTodo, increment } from './../../redux/actions';
+import { fetchTodo, updateTodo } from './../../redux/actions';
+import TodoItem from './Item';
 
 const TODO_LIMIT = 10;
 
@@ -11,12 +12,11 @@ type ParamState = {
     _limit: number;
 };
 
-const App: React.FC = React.memo(() => {
-    const counter = useTypeSelector(state => state.counter);
+export const TodoListComponent: React.FC = React.memo(() => {
     const todos = useTypeSelector(state => state.todos);
     const dispatch = useDispatch();
 
-    const headRef = React.createRef<HTMLHeadingElement>();
+    const [model, setModel] = React.useState<TodoInterface>();
 
     const [params, setParams] = React.useState<ParamState>({
         _start: 0,
@@ -25,20 +25,14 @@ const App: React.FC = React.memo(() => {
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
     const nextPage = () => {
-        setParams(prev => ({
-            ...prev,
-            _start: prev._start + TODO_LIMIT,
-        }));
+        setParams(prev => ({ ...prev, _start: prev._start + TODO_LIMIT }));
     };
 
     const prevPage = () => {
         if (params._start < TODO_LIMIT) {
             return;
         }
-        setParams(prev => ({
-            ...prev,
-            _start: prev._start - TODO_LIMIT,
-        }));
+        setParams(prev => ({ ...prev, _start: prev._start - TODO_LIMIT }));
     };
 
     useEffect(() => {
@@ -51,54 +45,42 @@ const App: React.FC = React.memo(() => {
             });
     }, [params]);
 
-    /** apply effect when counter change */
-
-    const setHeadingColor = (color: string) => {
-        headRef.current && headRef.current.style.setProperty('color', color);
+    const callbackUpdateSucess = (args: Partial<TodoInterface>) => {
+        dispatch(
+            updateTodo(
+                todos.todos.map(item => {
+                    if (item.id === model?.id) {
+                        return { ...item, ...args };
+                    }
+                    return item;
+                }),
+            ),
+        );
     };
-
-    const applyEffect = () => {
-        setHeadingColor('red');
-        setTimeout(() => {
-            setHeadingColor('black');
-        }, 2e2);
-    };
-
-    useEffect(() => {
-        applyEffect();
-        
-        return () => {
-            applyEffect();
-        };
-    }, [counter]);
 
     return (
         <div>
-            <h1 ref={headRef}>Counter: {counter}</h1>
-
-            <button onClick={() => dispatch(increment())}> (+) Increment</button>
-            <button onClick={() => dispatch(decremet())}> (-) Decrement</button>
-
+            <h2>Todo</h2>
             <div>
-                <h2>Todo</h2>
                 <button disabled={isLoading || params._start < TODO_LIMIT} onClick={() => prevPage()}>
                     Prev page
                 </button>
                 <button disabled={isLoading} onClick={() => nextPage()}>
                     Next page
                 </button>
-
-                {isLoading && <p>Loading...</p>}
-
-                {!isLoading &&
-                    todos.todos.map(todo => (
-                        <p key={todo.id}>
-                            <Link to={`/todos/${todo.id}`}>{todo.title}</Link>
-                        </p>
-                    ))}
             </div>
+
+            {isLoading && <p>Loading...</p>}
+
+            {todos?.todos?.map(todo => (
+                <TodoItem
+                    key={todo.id}
+                    todo={todo}
+                    callbackSuccess={callbackUpdateSucess}
+                    current={model}
+                    setTodo={setModel}
+                />
+            ))}
         </div>
     );
 });
-
-export default App;

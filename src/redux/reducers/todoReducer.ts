@@ -14,6 +14,12 @@ const myReducer = (state = initState, action: TodoPayload): MyState => {
             return {
                 todos: action.payload,
             };
+        case TODO_ACTION.EDIT_SUCCESS:
+            return {
+                todos: action.payload,
+            };
+        case TODO_ACTION.DELETE_SUCCESS:
+            return state;
         default:
             return state;
     }
