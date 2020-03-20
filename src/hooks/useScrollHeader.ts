@@ -11,7 +11,6 @@ export const useScrollHeader = () => {
 
     useEffect(() => {
         let scrollPos = 0;
-
         window.addEventListener('scroll', () => {
             const transformValue: string = getClientRect().top > scrollPos ? 'none' : 'translateY(-100%)';
 
@@ -19,6 +18,9 @@ export const useScrollHeader = () => {
 
             scrollPos = getClientRect().top;
         });
+        return ()=>{
+            //
+        }
     }, []);
 
     return style;

@@ -4,6 +4,7 @@ import { TodoInterface } from '../constants/types';
 import { useTypeSelector } from './../../hooks/useTypeSelector';
 import { fetchTodo, updateTodo } from './../../redux/actions';
 import TodoItem from './Item';
+import { useScrollHeader } from '../../hooks/useScrollHeader';
 
 const TODO_LIMIT = 10;
 
@@ -17,14 +18,15 @@ export const TodoListComponent: React.FC = React.memo(() => {
     const dispatch = useDispatch();
 
     const [model, setModel] = React.useState<TodoInterface>();
+    const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
     const [params, setParams] = React.useState<ParamState>({
         _start: 0,
         _limit: TODO_LIMIT,
     });
-    const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
     const nextPage = () => {
+        dispatch(fetchTodo([]));
         setParams(prev => ({ ...prev, _start: prev._start + TODO_LIMIT }));
     };
 
@@ -32,8 +34,25 @@ export const TodoListComponent: React.FC = React.memo(() => {
         if (params._start < TODO_LIMIT) {
             return;
         }
+        dispatch(fetchTodo([]));
         setParams(prev => ({ ...prev, _start: prev._start - TODO_LIMIT }));
     };
+
+    const callbackUpdateSucess = React.useCallback(
+        (args: Partial<TodoInterface>) => {
+            dispatch(
+                updateTodo(
+                    todos.todos.map(item => {
+                        if (item.id === model?.id) {
+                            return { ...item, ...args };
+                        }
+                        return item;
+                    }),
+                ),
+            );
+        },
+        [dispatch],
+    );
 
     useEffect(() => {
         setIsLoading(true);
@@ -44,19 +63,6 @@ export const TodoListComponent: React.FC = React.memo(() => {
                 setIsLoading(false);
             });
     }, [params]);
-
-    const callbackUpdateSucess = (args: Partial<TodoInterface>) => {
-        dispatch(
-            updateTodo(
-                todos.todos.map(item => {
-                    if (item.id === model?.id) {
-                        return { ...item, ...args };
-                    }
-                    return item;
-                }),
-            ),
-        );
-    };
 
     return (
         <div>
@@ -77,7 +83,7 @@ export const TodoListComponent: React.FC = React.memo(() => {
                     key={todo.id}
                     todo={todo}
                     callbackSuccess={callbackUpdateSucess}
-                    current={model}
+                    current={model?.id===todo.id}
                     setTodo={setModel}
                 />
             ))}

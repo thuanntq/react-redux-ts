@@ -6,7 +6,7 @@ import { Input } from './../common/Input';
 
 type Props = {
     todo: TodoInterface;
-    current: TodoInterface | undefined;
+    current: boolean | undefined;
     callbackSuccess: (args: Partial<TodoInterface>) => void;
     setTodo: (args: TodoInterface | undefined) => void;
 };
@@ -47,13 +47,12 @@ const App: React.FC<Props> = React.memo(({ todo, callbackSuccess, setTodo, curre
         <div>
             <Link to={`/todos/${todo.id}`}>{todo.title}</Link>
 
-            {(!current || current.id !== todo.id) && (
+            {(!current) && (
                 <span>
                     <Button
                         btnType="default"
                         title="Edit"
                         onClick={() => {
-                            console.log(111);
                             setTodo(todo)
                         }}
                         style={{ marginLeft: '10px' }}  
@@ -63,7 +62,7 @@ const App: React.FC<Props> = React.memo(({ todo, callbackSuccess, setTodo, curre
                 </span>
             )}
 
-            {current?.id === todo.id && (
+            {current && (
                 <div style={{ margin: '5px 0px 5px 30px' }}>
                     <Input ref={inputRef} type="text" value={model.title} onChange={inputOnchangeHandle} />
 
@@ -71,7 +70,7 @@ const App: React.FC<Props> = React.memo(({ todo, callbackSuccess, setTodo, curre
                         btnType="info"
                         title="Update"
                         onClick={() => updateHandle(todo.id)}
-                        disabled={current.title === model.title}
+                        disabled={todo.title === model.title}
                         style={{ marginLeft: '10px' }}
                     />
                     <Button
