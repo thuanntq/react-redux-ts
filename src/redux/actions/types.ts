@@ -15,3 +15,8 @@ export type MYSTORE = {
     counter: number;
     todos: TodoInterface[];
 };
+
+
+export const FETCH_POST_BEGIN = 'FETCH_POST_BEGIN';
+export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
+export const FETCH_POST_FAILURE = 'FETCH_POST_FAILURE';

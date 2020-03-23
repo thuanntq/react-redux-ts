@@ -8,21 +8,23 @@ export const CounterComponent: React.FC = React.memo(() => {
 
     const counter = useTypeSelector(state => state.counter);
     const dispatch = useDispatch();
-
+    let currentTimer: NodeJS.Timeout;
     const setHeadingColor = (color: string) => {
         headRef.current && headRef.current.style.setProperty('color', color);
     };
 
     const applyEffect = () => {
         setHeadingColor('red');
-        setTimeout(() => {
+        currentTimer = setTimeout(() => {
             setHeadingColor('black');
         }, 2e2);
     };
 
     useEffect(() => {
         applyEffect();
-        return () => applyEffect();
+        return () => {
+            clearTimeout(currentTimer);
+        };
     }, [counter]);
 
     return (
