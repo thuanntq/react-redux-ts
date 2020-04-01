@@ -1,25 +1,26 @@
 # Guide
 
-- React
-- Redux
-- Typescript
+-   React
+-   Redux
+-   Typescript
 
-*Recommend use `yarn` package manager*
+_Recommend use `yarn` package manager_
 
 ## Clone from git
 
-- Clone project from git
+-   Clone project from git
+
 ```bash
 
 git clone https://github.com/thuanntq/react-redux-ts.git
 
-#or 
+#or
 
 git clone git@github.com:thuanntq/react-redux-ts.git
 
 ```
 
-- run yarn install
+-   run yarn install
 
 ```bash
 
@@ -30,7 +31,8 @@ yarn
 npm install
 
 ```
-## Started 
+
+## Started
 
 ### Create project
 
@@ -60,23 +62,24 @@ npm install --save typescript redux react-redux @types/react-reduxt -E
 
 ```
 
-```ANSI
-.
-+-- _config.yml
-+-- _drafts
-|   +-- begin-with-the-crazy-ideas.textile
-|   +-- on-simplicity-in-technology.markdown
-+-- _includes
-|   +-- footer.html
-|   +-- header.html
-+-- _layouts
-|   +-- default.html
-|   +-- post.html
-+-- _posts
-|   +-- 2007-10-29-why-every-programmer-should-play-nethack.textile
-|   +-- 2009-04-26-barcamp-boston-4-roundup.textile
-+-- _data
-|   +-- members.yml
-+-- _site
-+-- index.html
+```bash
+root
+    |_ reducers
+        |_ news
+            |_ entryReducer.js
+            |_ entryIdsReducer.js
+    |_ selectors
+        |_ news
+            |_ entrySelector.js
+            |_ entryIdsSelector.js
+    |_ actions
+        |_ news
+            |_ entryAction.js
+    |_ apis
+        |_ news
+            |_ entryApi.js
+    |_ sagas
+        |_ news
+    |_ object
+        |_ news
 ```
