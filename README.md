@@ -60,6 +60,7 @@ npm install --save typescript redux react-redux @types/react-reduxt -E
 
 ```
 
+```tree
 .
 +-- _config.yml
 +-- _drafts
@@ -78,3 +79,4 @@ npm install --save typescript redux react-redux @types/react-reduxt -E
 |   +-- members.yml
 +-- _site
 +-- index.html
+```
