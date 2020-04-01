@@ -60,7 +60,7 @@ npm install --save typescript redux react-redux @types/react-reduxt -E
 
 ```
 
-```bash
+```ANSI
 .
 +-- _config.yml
 +-- _drafts
