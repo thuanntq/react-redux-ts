@@ -64,22 +64,22 @@ npm install --save typescript redux react-redux @types/react-reduxt -E
 
 ```bash
 root
-    |_ reducers
-        |_ news
-            |_ entryReducer.js
-            |_ entryIdsReducer.js
+    |- reducers
+    |    |_ news
+    |    |    |_ entryReducer.js
+    |    |    |_ entryIdsReducer.js
     |_ selectors
-        |_ news
-            |_ entrySelector.js
-            |_ entryIdsSelector.js
+    |    |_ news
+    |    |    |_ entrySelector.js
+    |    |   |_ entryIdsSelector.js
     |_ actions
-        |_ news
-            |_ entryAction.js
+    |    |_ news
+    |    |    |_ entryAction.js
     |_ apis
-        |_ news
-            |_ entryApi.js
+    |    |_ news
+    |    |    |_ entryApi.js
     |_ sagas
-        |_ news
+    |    |_ news
     |_ object
-        |_ news
+    |    |_ news
 ```
