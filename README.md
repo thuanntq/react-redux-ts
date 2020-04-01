@@ -63,28 +63,6 @@ npm install --save typescript redux react-redux @types/react-reduxt -E
 ```
 
 ```bash
-root
-    |- reducers
-    |    |_ news
-    |    |    |_ entryReducer.js
-    |    |    |_ entryIdsReducer.js
-    |_ selectors
-    |    |_ news
-    |    |    |_ entrySelector.js
-    |    |   |_ entryIdsSelector.js
-    |_ actions
-    |    |_ news
-    |    |    |_ entryAction.js
-    |_ apis
-    |    |_ news
-    |    |    |_ entryApi.js
-    |_ sagas
-    |    |_ news
-    |_ object
-    |    |_ news
-```
-
-```bash
 .
 ├── ...
 ├── docs                    # Documentation files (alternatively `doc`)
@@ -94,4 +72,5 @@ root
 │   ├── usage.md            # Getting started guide
 │   └── ...                 # etc.
 └── ...
+
 ```
