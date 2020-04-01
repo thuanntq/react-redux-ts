@@ -84,6 +84,7 @@ root
     |    |_ news
 ```
 
+```bash
 .
 ├── ...
 ├── docs                    # Documentation files (alternatively `doc`)
@@ -93,3 +94,4 @@ root
 │   ├── usage.md            # Getting started guide
 │   └── ...                 # etc.
 └── ...
+```
