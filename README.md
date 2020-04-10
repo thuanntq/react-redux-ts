@@ -75,6 +75,20 @@ npm install --save typescript redux react-redux @types/react-reduxt -E
 
 ```
 
+## Tạo alias cho git 
+
+```bash
+
+git config --global alias.co checkout
+
+git config --global alias.br branch
+
+git config --global alias.ci commit
+
+git config --global alias.st status
+
+```
+
 ## Quy tắc đánh tag version 
 Phiên bản phần mềm gồm 3 thành phần chính: `MAJOR.MINOR.PATCH`
 
