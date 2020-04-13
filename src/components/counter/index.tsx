@@ -6,26 +6,29 @@ import { decremet, increment } from './../../redux/actions';
 export const CounterComponent: React.FC = React.memo(() => {
     const headRef = React.createRef<HTMLHeadingElement>();
 
-    const counter = useTypeSelector(state => state.counter);
+    const counter = useTypeSelector((state) => state.counter);
     const dispatch = useDispatch();
-    let currentTimer: NodeJS.Timeout;
-    const setHeadingColor = (color: string) => {
-        headRef.current && headRef.current.style.setProperty('color', color);
-    };
-
-    const applyEffect = () => {
-        setHeadingColor('red');
-        currentTimer = setTimeout(() => {
-            setHeadingColor('black');
-        }, 2e2);
-    };
 
     useEffect(() => {
+        let currentTimer: NodeJS.Timeout;
+
+        const setHeadingColor = (color: string) => {
+            headRef.current && headRef.current.style.setProperty('color', color);
+        };
+
+        const applyEffect = () => {
+            setHeadingColor('red');
+            currentTimer = setTimeout(() => {
+                setHeadingColor('black');
+            }, 2e2);
+        };
+
         applyEffect();
+        
         return () => {
             clearTimeout(currentTimer);
         };
-    }, [counter]);
+    }, [counter, headRef]);
 
     return (
         <div>

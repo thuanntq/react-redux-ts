@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useTypeSelector } from './../../hooks/useTypeSelector';
-import { fetchPosts } from './../../redux/actions';
+import { useTypeSelector } from '../../hooks/useTypeSelector';
+import { fetchPosts } from '../../redux/actions';
 
 const useMedia = (query: string) => {
     let [matches, setMatches] = useState(window.matchMedia(query).matches);

@@ -1,21 +1,24 @@
 import React from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
-import { CounterComponent } from './components/counter';
-import { PostListComponent } from './components/post/List';
+import { BrowserRouter, Switch } from 'react-router-dom';
+
+import { PostListComponent } from './components/post';
+import { TechComponent } from './components/tech';
+import { ErrorBoundary } from './layouts/ErrorBoundary';
+import { RouteLayout } from './layouts/RouteLayout';
 
 const App: React.FC = React.memo(() => {
+
     return (
-        <BrowserRouter>
-            <div className="header">
-                <Link to="/posts">List Post</Link>
-            </div>
-
-            <CounterComponent />
-
-            <Switch>
-                <Route path="/posts" exact component={PostListComponent} />
-            </Switch>
-        </BrowserRouter>
+        <ErrorBoundary>
+            <BrowserRouter>
+                <Switch>
+                    <RouteLayout path="/" exact component={PostListComponent} />
+                    <RouteLayout path="/posts" exact component={PostListComponent} />
+                    <RouteLayout path="/news" exact component={PostListComponent} />
+                    <RouteLayout path="/tech" exact component={TechComponent} />
+                </Switch>
+            </BrowserRouter>
+        </ErrorBoundary>
     );
 });
 
