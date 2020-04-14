@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useTypeSelector } from './../../hooks/useTypeSelector';
-import { decremet, increment } from './../../redux/actions';
+import { useTypeSelector } from 'src/hooks/useTypeSelector';
+import { decremet, increment } from 'src/redux/actions';
 
 export const CounterComponent: React.FC = React.memo(() => {
     const headRef = React.createRef<HTMLHeadingElement>();

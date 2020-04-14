@@ -75,7 +75,7 @@ npm install --save typescript redux react-redux @types/react-reduxt -E
 
 ```
 
-## Tạo alias cho git 
+## Tạo alias cho git
 
 ```bash
 
@@ -89,11 +89,29 @@ git config --global alias.st status
 
 ```
 
-## Quy tắc đánh tag version 
+## Quy tắc đánh tag version
+
 Phiên bản phần mềm gồm 3 thành phần chính: `MAJOR.MINOR.PATCH`
 
-- `MAJOR`: Phiên bản chính - Đánh số khi có những thay đổi không tương thích với phiên bản cũ
+-   `MAJOR`: Phiên bản chính - Đánh số khi có những thay đổi không tương thích với phiên bản cũ
 
-- `MINOR`: Phiên bản phụ - Đánh số khi thêm tính năng mới nhưng vẫn đảm bảo tương thích với các phiên bản cũ
+-   `MINOR`: Phiên bản phụ - Đánh số khi thêm tính năng mới nhưng vẫn đảm bảo tương thích với các phiên bản cũ
 
-- `PATCH`: Phiên bản vá - Đánh số cho nhưng bản vá lỗi, sửa lỗi nhỏ
+-   `PATCH`: Phiên bản vá - Đánh số cho nhưng bản vá lỗi, sửa lỗi nhỏ
+
+## config đường dẫn trong 
+
+**Typescript**
+
+Set `baseUrl` trong file `tsconfig.json`
+
+```json
+{
+    "compilerOptions": {
+        "baseUrl": "."
+    }
+}
+```
+
+**JS thường**
+- [babel-plugin-module-resolver](https://github.com/tleunen/babel-plugin-module-resolver)

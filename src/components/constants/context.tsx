@@ -38,19 +38,17 @@ export const ThemeContextProvider: React.FC = React.memo(({ children }) => {
 
     // paints the app before it renders elements
     useLayoutEffect(() => {
-        const lastTheme: boolean = window.localStorage.getItem('darkTheme') === 'true';
-
-        if (lastTheme) {
+        if (current) {
             setDark(true);
             applyTheme(darkTheme);
         }
 
-        if (!lastTheme || !lastTheme) {
+        if (!current) {
             setDark(false);
             applyTheme(lightTheme);
         }
         // if state changes, repaints the app
-    }, [dark]);
+    }, [current, dark]);
 
     const applyTheme = (theme: Array<string>) => {
         const body = document.getElementsByTagName('body')[0];
